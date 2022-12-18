@@ -1,0 +1,111 @@
+from datetime import *
+from random import *
+from time import sleep
+
+import requests
+import json
+
+
+if __name__ == '__main__':
+
+    #Stadtarray
+    stadtGr = [
+        "Berlin",
+        "Hamburg",
+        "Müchen",
+        "Köln",
+        "Frankfurt am Main",
+        "Stuttgart",
+        "Düsseldorf",
+        "Leipzig",
+        "Dortmund",
+        "Essen",
+        "Bremen",
+        "Dresden",
+        "Hannover",
+        "Nürnberg",
+        "Duisburg",
+        "Bochum",
+        "Wuppertal",
+        "Bielefeld",
+        "Bonn",
+        "Münster",
+        "Karlsruhe",
+        "Mannheim",
+        "Augsburg",
+        "Wiesbaden",
+        "Münchengladbach",
+        "Gelsenkirchen",
+        "Braunschweig",
+        "Kiel",
+        "Aachen",
+        "Chemnitz",
+        "Haale (Saale)",
+        "Magdeburg",
+        "Freiburg im Breisgau",
+        "Krefeld",
+        "Lübeck",
+        "Mainz",
+        "Erfurt",
+        "Oberhausen",
+        "Rostock",
+        "Kassel",
+        "Hagen",
+        "Saarbrücken",
+        "Hamm",
+        "Potsdam",
+        "Ludwigshafen am Rhein",
+        "Mülheim an der Ruhr",
+        "Oldenburg",
+        "Osnabrück",
+        "Leverkusen",
+        "Heidelberg",
+        "Solingen",
+        "Darmstadt",
+        "Herne",
+        "Neuss",
+        "Regensburg",
+        "Paderborn",
+        "Ingolstadt",
+        "Offenbach am Main",
+        "Würzburg",
+        "Fürth",
+        "Ulm",
+        "Heilbronn",
+        "Pforzheim",
+        "Wolfsburg",
+        "Göttingen",
+        "Bottrop",
+        "Reutlingen",
+        "Koblenz",
+        "Bremerhaven",
+        "Recklinghausen",
+        "Bergisch Gladbach",
+        "Erlangen",
+        "Jena",
+        "Remscheid",
+        "Trier",
+        "Salzgitter",
+        "Moers",
+        "Siegen",
+        "Hildesheim",
+        "Cottbus",
+        "Gütersloh"
+    ]
+
+    for i in range(200):
+
+        #Zufalls Name
+        r = requests.get("https://realnamecreator.alexjonas.de/g.php?1670970777203&ref=fleck&tk=nqBEKzOMAeK1qxUGDatt")
+        rj = r.json()
+        vorname = rj["v"]
+        nachname = rj["n"]
+
+        #Zufalls Stadt
+        stadt = choice(stadtGr)
+
+
+        sql_statment = "INSERT INTO  kontakt(vorname, nachname, stadt) VALUES('%s', '%s', '%s');" %  (vorname, nachname, stadt)
+        print(sql_statment)
+        sleep(1)
+
